@@ -1,10 +1,11 @@
 name: Approve PR via reaction
 description: >-
-  Post an approval comment on the pull request and wait for an approving
-  reaction from a listed approver. The approval is bound to the PR head commit
-  SHA, so a new push requires a fresh approval. Approvers may be GitHub
-  usernames or org teams (org/slug). The reactions that approve and reject are
-  configurable; reactions from non-approvers are ignored.
+  Gate a job on an approving reaction from listed approvers (users or org
+  teams), keyed to the PR head commit SHA.
+
+branding:
+  icon: check-circle
+  color: green
 
 inputs:
   approvers:
