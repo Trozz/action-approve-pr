@@ -1,0 +1,34 @@
+name: Bug report
+description: Report a problem with the approve-pr action
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: step-config
+    attributes:
+      label: Step configuration
+      description: The approve-pr step you used. Redact tokens and secrets.
+      render: yaml
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Action version
+      description: e.g. v1, v1.0.0, or a commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Job logs or the rendered approval comment. Redact sensitive data.
+      render: shell
+    validations:
+      required: false
