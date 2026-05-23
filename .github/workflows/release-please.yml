@@ -20,7 +20,7 @@ jobs:
       # release-please creates the vX.Y.Z tag with GITHUB_TOKEN, which does not
       # trigger the tag-push release.yml workflow. So move the major tag here,
       # in the same run, whenever a release was actually cut.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         if: ${{ steps.release.outputs.release_created }}
         with:
           fetch-depth: 0
