@@ -206,6 +206,23 @@ runs:
             }
           };
 
+          // Supersede stale approval comments from earlier commits on this PR.
+          // Same label, different SHA: rewrite their status line so reviewers
+          // can see at a glance which comment applies to the current commit.
+          const stalePrefix = `<!-- approve-pr:${label}:`;
+          const staleComments = comments.filter(c =>
+            c.body && c.body.includes(stalePrefix) && !c.body.includes(marker)
+          );
+          for (const stale of staleComments) {
+            await github.rest.issues.updateComment({
+              owner, repo, comment_id: stale.id,
+              body: stale.body.replace(
+                /\*\*Status:\*\*.*/,
+                `**Status:** Superseded by commit \`${shortSha}\`.`
+              ),
+            });
+          }
+
           await setStatus(`Waiting for approval (timeout ${timeoutMin}m).`);
           core.info(`Awaiting reactions on comment ${comment.id}`);
 

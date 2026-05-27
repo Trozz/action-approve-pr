@@ -115,6 +115,9 @@ approver came from, like `Approved by @alice (my-org/platform)`.
   re-run without a new commit.
 - Re-running the same commit reuses its approval comment (and any approval
   reaction already on it). A new commit always requires a fresh approval.
+- When a new commit is pushed, approval comments left on earlier commits (same
+  label, different SHA) are rewritten to a `Superseded by commit <sha>` status
+  so it is obvious which comment is the active one.
 - Team membership is resolved once when the action starts. If a listed team
   cannot be read (missing `read:org` scope or the team does not exist), the
   action fails with a clear error rather than silently ignoring the team.
